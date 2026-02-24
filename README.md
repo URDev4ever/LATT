@@ -55,7 +55,7 @@ LATT is designed to map and break those assumptions.
 LATT/
 │
 ├── COLLECTION.md
-├── CYOE.md
+├── CYOE.txt
 └── README.md
 ```
 
@@ -68,7 +68,7 @@ LATT/
   * Reusable mental models
   * Payload patterns and abuse techniques
 
-* **CYOE.md**
+* **CYOE.txt**
 
   * “Choose Your Own Exploit”
   * Interactive red-team simulation
@@ -133,7 +133,7 @@ LATT/
    * Identify relevant attack categories
    * Build your testing hypotheses
 
-2. Use `CYOE.md`
+2. Use `CYOE.txt`
 
    * Simulate decision trees
    * Train adversarial thinking
