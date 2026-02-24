@@ -1,0 +1,144 @@
+###############################################
+#  LLM APPLICATION ATTACK PATH DECISION TREE  #
+#        (Choose Your Own Exploit)            #
+###############################################
+
+START
+ |
+ |--[0] Complete Architecture Mapping (Section 0)
+ |
+ |-- Does the LLM have access to INTERNAL TOOLS?
+ |        |
+ |        |-- NO --> Skip Tool Abuse.
+ |        |          |
+ |        |          |-- Does it have RAG?
+ |        |                 |
+ |        |                 |-- NO --> Low Critical Impact Probability.
+ |        |                 |          Focus on:
+ |        |                 |          - Cross-user leakage
+ |        |                 |          - Memory boundary issues
+ |        |                 |
+ |        |                 |-- YES --> Go to [RAG PATH]
+ |        |
+ |        |-- YES --> Continue
+ |
+ |-- Are any tools WRITE-capable?
+ |        |   (modify data, send email, payments, workflows)
+ |        |
+ |        |-- NO --> Read-only tools.
+ |        |          |
+ |        |          |-- Test:
+ |        |          |     - IDOR via tool parameters
+ |        |          |     - Cross-tenant data fetch
+ |        |          |     - Metadata leakage
+ |        |          |
+ |        |          |-- Then evaluate RAG (if exists)
+ |        |
+ |        |-- YES --> HIGH IMPACT ZONE
+ |                    |
+ |                    |-- Test:
+ |                    |     - Action vs Data authorization mismatch
+ |                    |     - Confused deputy
+ |                    |     - Parameter manipulation
+ |                    |     - Cross-user action execution
+ |                    |     - Action chaining
+ |                    |
+ |                    |-- Does backend re-validate permissions?
+ |                             |
+ |                             |-- YES --> Harder target.
+ |                             |           Look for TOCTOU / race issues.
+ |                             |
+ |                             |-- NO --> CRITICAL POTENTIAL.
+ |
+ |
+ |-- Does the system use RAG (document retrieval)?
+ |        |
+ |        |-- NO --> Skip to Memory & Multi-User testing.
+ |        |
+ |        |-- YES --> [RAG PATH]
+ |                     |
+ |                     |-- Is it multi-tenant?
+ |                     |        |
+ |                     |        |-- NO --> Test metadata leakage + inference.
+ |                     |        |
+ |                     |        |-- YES --> PRIORITY TARGET
+ |                     |               |
+ |                     |               |-- Test:
+ |                     |               |     - Cross-tenant document retrieval
+ |                     |               |     - Global index probing
+ |                     |               |     - Document existence inference
+ |                     |               |     - Metadata exfiltration
+ |                     |               |     - Embedding boundary probing
+ |                     |
+ |                     |-- Can you count or list documents globally?
+ |                              |
+ |                              |-- YES --> Information disclosure confirmed.
+ |                              |
+ |                              |-- NO --> Try inference via similarity search.
+ |
+ |
+ |-- Does the system have PERSISTENT MEMORY?
+ |        |
+ |        |-- NO --> Skip memory poisoning.
+ |        |
+ |        |-- YES --> Test:
+ |                - Long-term memory contamination
+ |                - Privilege persistence
+ |                - Cross-session escalation
+ |                - Role memory override
+ |
+ |
+ |-- Does the system trigger REAL-WORLD SIDE EFFECTS?
+ |        |  (email, payment, file write, webhooks, API calls)
+ |        |
+ |        |-- NO --> Lower financial impact potential.
+ |        |
+ |        |-- YES --> Test:
+ |                - Tool flooding
+ |                - Recursive tool chains
+ |                - Bulk operations
+ |                - Rate-limit bypass
+ |
+ |
+ |-- MULTI-TURN TESTING REQUIRED?
+ |        |
+ |        |-- YES --> Attempt:
+ |                - Gradual parameter discovery
+ |                - Context contamination
+ |                - Trust-building escalation
+ |                - Read → Write chaining
+ |
+ |
+ |-- FINAL STEP: IMPACT VALIDATION
+ |        |
+ |        |-- Confirm:
+ |                - What function is being called?
+ |                - Which user context is used?
+ |                - What data source is accessed?
+ |                - Is authorization re-checked server-side?
+ |
+ |
+END STATE EVALUATION:
+ |
+ |-- Model refused but backend untouched → No bounty.
+ |
+ |-- Model exposed hidden prompt only → Low/Informational.
+ |
+ |-- Cross-user data exposure → Medium/High.
+ |
+ |-- Unauthorized data modification → High.
+ |
+ |-- Financial / payment abuse → Critical.
+ |
+ |-- Cross-tenant RAG breach → High/Critical.
+ |
+ |-- Persistent privilege escalation → Critical.
+ |
+###############################################
+#  REMEMBER:                                  #
+#  The bug is not the prompt.                 #
+#  The bug is backend trust in the model.     #
+###############################################
+_______________________
+Made with <3 by URDev.
+_______________________
