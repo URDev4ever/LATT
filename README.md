@@ -60,7 +60,8 @@ LATT/
 │
 ├── COLLECTION.md
 ├── CYOE.txt
-└── README.md
+├── README.md
+└── README_ES.md
 ```
 
 ### Files
