@@ -1,6 +1,10 @@
 <h1 align="center">LATT</h1>
 
 <h2 align="center">LLM Attack Testing Toolkit</h2>
+<p align="center">
+  🇺🇸 <a href="README.md"><b>English</b></a> |
+  🇪🇸 <a href="README_ES.md">Español</a>
+</p>
 
 > A structured methodology and mindset framework for testing Large Language Model (LLM) applications against logic abuse, prompt injection, jailbreaks, and workflow manipulation.
 
