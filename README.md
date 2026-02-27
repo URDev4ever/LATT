@@ -58,10 +58,11 @@ LATT is designed to map and break those assumptions.
 ```
 LATT/
 │
-├── COLLECTION.md
-├── CYOE.txt
-├── README.md
-└── README_ES.md
+├── COLLECTION.md  # Main Collection of pentesting elements
+├── CYOE.txt       # GenAI OffSec Testing Guide based on LLM
+├── LICENSE        # MIT License for this repository
+├── README.md      # English documentation
+└── README_ES.md   # Spanish documentation
 ```
 
 ### Files
