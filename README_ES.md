@@ -58,10 +58,11 @@ LATT está diseñado para mapear y romper esos supuestos.
 ```
 LATT/
 │
-├── COLLECTION.md
-├── CYOE.txt
-├── README.md
-└── README_ES.md
+├── COLLECTION.md  # Colección principal de elementos de penetración
+├── CYOE.txt       # Guía de seguridad ofensiva GenAI según el LLM
+├── LICENSE        # Licencia MIT para este repositorio
+├── README.md      # Documentación en inglés
+└── README_ES.md   # Documentación en español
 ```
 
 ### Archivos
