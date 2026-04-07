@@ -3,7 +3,7 @@
 <h2 align="center">LLM Attack Testing Toolkit</h2>
 <p align="center">
   🇺🇸 <a href="README.md"><b>English</b></a> |
-  🇪🇸 <a href="README_ES.md">Español</a>
+  🇪🇸 <b>Español</b>
 </p>
 
 > Una metodología estructurada y un framework de mentalidad para testear aplicaciones basadas en Large Language Models (LLM) contra abuso de lógica, prompt injection, jailbreaks y manipulación de workflows.
